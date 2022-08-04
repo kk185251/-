@@ -1,142 +1,132 @@
----
-title: "Spart Win10�Ή��ɂ�����p�b�P�[�W�쐬(Install Sheild2018��)"
-tags: "Win10�Ή�"
----
+# 概要
+Win10対応に向けてパッケージ環境の作成方法についてまとめる。  
+自分の担当したPOSアプリケーションが、「SPART」と「Mex-SPART」であるためこの2つの作成方法を書く。
 
-# �͂��߂�
+# 前提
+InstallShieldのバージョンが2014などであれば、2018にバージョンアップして作成する必要がある。   
+[InstallShiledバージョン対応表](https://github.com/kk185251/knowledge/files/9260000/pdf_is_pro_info_flexera_installshield0001_02.pdf)  
+すでにバージョンが2018であれば新たに作成する必要はない。
 
-InstallShield2018�𗘗p����B��{�I�ɁA�M�҂��S�������f�C�g�i�̃v���W�F�N�g��O��Ƃ��Đi�߂邽�߁A�t�H���_�p�X�Ȃǂ͈Ⴄ�\��������B�����́A�����̒S�����Ă���v���W�F�N�g�ɒu�������Č��i�߂Ăق����B  
-�܂��ACustomize Package��General Package��2��ΏۂƂ��Ă���B2�̃p�b�P�[�W�ňႤ�ݒ�̎d��������ꍇ�́A���̎|���L�ڂ���̂ň��S���Ăق����B
+# Install Shield2018を立ち上げるまで
+1. 各客先のパッケージ作成フォルダに入る。
+2. Win10用パッケージ作成環境用のフォルダを新規作成する。
+3. Windowsメニューの「すべてのプログラム」からInstallShieldフォルダのInstallShield2018を起動する。
 
-# �쐬���@
+# 作成方法
+また、Customize PackageとGeneral Packageの2つを対象としている。2つのパッケージで違う設定の仕方がある場合は、その旨を記載するので安心してほしい。
+## .ismを作成
 
-## Install Shield2018�𗧂��グ��܂�
-�q��̃p�b�P�[�W�쐬���܂œ���B
+Project Tasksのcreate new projectを選択する。
 
-�ȉ��̃l�b�g���[�N�p�X�ɐڑ�����B
-    \\153.59.51.164
-    \\153...169?
+CommonタブのInstallScript Projectを選択する。
 
-�p�X���[�h��  
-User/mono, Password/password
+プロジェクト名を決定する。名前は、顧客先名の方が良いかもしれない。(同プロジェクトの他がどのような名称になっているのか参考にして決めると統一するので良い)
 
-�q��̃p�b�P�[�W�쐬���̃t�H���_�Ɉړ�����B  
-Win10�p�p�b�P�[�W�쐬���p�̃t�H���_��V�K�쐬����B
+LocationのBrowseボタンを押下する。
+作成したセットアップ(.ism)をどこに配置するのか決定する。(ここも、他のパッケージがどこに配置されているのか確認して配置場所を決めた方が良い)
 
-Windows���j���[�́u���ׂẴv���O�����v����InstallShield�t�H���_��InstallShield2018���N������B
+左下の「Create ~ 」にチェックを付ける。
 
-## Install Shield2018
+他客先と同様に新規作成したフォルダの直下に入れる。
 
-Project Tasks��create new project��I������B
+OKを選択する。
 
-Common�^�u��InstallScript Project��I������B
+下側に、いくつか項目が並んでいる。
 
-�v���W�F�N�g�������肷��B���O�́A�ڋq�於�̕����ǂ���������Ȃ��B(���v���W�F�N�g�̑����ǂ̂悤�Ȗ��̂ɂȂ��Ă���̂��Q�l�ɂ��Č��߂�Ɠ��ꂷ��̂ŗǂ�)
+Application Informationを選択する。
 
-Location��Browse�{�^������������B
-�쐬�����Z�b�g�A�b�v(.ism)���ǂ��ɔz�u����̂����肷��B(�������A���̃p�b�P�[�W���ǂ��ɔz�u����Ă���̂��m�F���Ĕz�u�ꏊ�����߂������ǂ�)
-
-�����́uCreate ~ �v�Ƀ`�F�b�N��t����B
-
-���q��Ɠ��l�ɐV�K�쐬�����t�H���_�̒����ɓ����B
-
-OK��I������B
-
-�����ɁA���������ڂ�����ł���B
-
-Application Information��I������B
-
-Installtion Interview�@  
-�S�Ẵ`�F�b�N�{�^�����uNo�v�ɂ���B
+Installtion Interview　  
+全てのチェックボタンを「No」にする。
 
 Build Install  
-single executable�ɂ̂݃`�F�b�N������
+single executableにのみチェックをつける
 
 Install Designer  
 General info  
-�ݒ肪�����Ă��邩�m�F����B  
-TargetDir �W�J���path�ł���B
-�l��ύX����
+設定が合っているか確認する。  
+TargetDir 展開先のpathである。
+値を変更する
 ```
 SPART
-�ύX��FC:\opos\Application\SS
+変更後：C:\opos\Application\SS
 
 Mex SPART
-�ύX��FC:\software\ncr\res
+変更後：C:\software\ncr\res
 ```
-�uexecutable file�v�̐ݒ�l�͍폜����B
+「executable file」の設定値は削除する。
 
-�ۑ�����B
+保存する。
 
-�uproduct code�v�����邪�A����̓��j�[�NID�ł���B
-�܂�A���v���W�F�N�g�Ƃ�product code�͂��Ԃ��Ă͂����Ȃ��B���Ԃ�Ȃ��悤�ɂ���B(�������A��{�I�ɐV�����v���W�F�N�g���쐬�����Ȃ��ӂ�ID�ł���Ǝv��)
+「product code」があるが、これはユニークIDである。
+つまり、他プロジェクトとはproduct codeはかぶってはいけない。かぶらないようにする。(しかし、基本的に新しくプロジェクトを作成したなら一意なIDであると思う)
 
-�G�N�X�v���[���̓��v���W�F�N�g��Win10�p�ł͂Ȃ��p�b�P�[�W�쐬������ADATA�t�H���_���R�s�[����  
+### SPARTの場合
+エクスプローラの同プロジェクトのWin10用ではないパッケージ作成環境から、DATAフォルダをコピーする  
 
-�f�B���N�g���K�w��Win10�𓝈ꂷ�邱�ƁB���̕����Ǘ����₷�����y�Ȃ̂�
+ディレクトリ階層はWin10を統一すること。その方が管理しやすいし楽なので
 
-�����������Ă��Ȃ��Ȃ�쐬�����v���W�F�N�g(.ism)���N������B
+立ちあがっていないなら作成したプロジェクト(.ism)を起動する。
 
-project assistant�^�u�́uApplication Files�v�́uApplication Target Folder�v��I������B
+project assistantタブの「Application Files」の「Application Target Folder」を選択する。
 
-Win10�p�̃p�b�P�[�W�ɃR�s�[���Ă���Data�t�H���_���̊e�t�H���_��Drag&Drop����B  
-���J�Ɉ��S�ɐݒ肵�������߁A1���s�����ƁB  
-�X�V���Ȃ��ƁA�ǉ������̂���ʏ�ɔ��f����Ȃ����߁A�E�N���b�N����uReflesh�v���N���b�N����ƁA�X�V�����B
+Win10用のパッケージにコピーしてきたDataフォルダ内の各フォルダをDrag&Dropする。  
+丁寧に安全に設定したいため、1個ずつ行うこと。  
+更新しないと、追加したのが画面上に反映されないため、右クリックから「Reflesh」をクリックすると、更新される。
 
-**���������͒��J�ɂ��Ȃ��ƃp�b�P�[�W�쐬���āA���z���ɓW�J��ASPart�̋N���Ɏ��s���邽�ߒ��ӂ���B**  
+**ここから先は丁寧にやらないとパッケージ作成して、仮想環境に展開後、SPartの起動に失敗するため注意する。**  
 
-Installtion Designer�^�u��I������B  
-Orgenization��setup design���Adefault feature�AdefaultComponent���܂��͍폜����B
+Installtion Designerタブを選択する。  
+Orgenizationのsetup designより、default feature、defaultComponentをまずは削除する。
 
-��قǁuApprication Target Folder�v�ɒǉ������t�H���_���uFiles�v�Ƃ������̂ō쐬����Ă��邽�߁A���̖��O��ǉ������t�H���_���ƈꏏ�ɂ���B
+先ほど「Apprication Target Folder」に追加したフォルダが「Files」という名称で作成されているため、この名前を追加したフォルダ名と一緒にする。
 
-### Data�t�H���_�̐ݒ�
-�܂��A���q��̑O�p�b�P�[�W��setup.rul���J���B
+### Dataフォルダの設定
+まず、同客先の前パッケージのsetup.rulを開く。
 
-�ݒ�Ώۂ̃t�H���_���Ŗ��O����(Ctrl + F)������BsvTarget������"INCLUDE_SUBDIR"������ƁAAlways�ASELFREG������ƁAself-register��Yes�Ɛݒ肷��B
+設定対象のフォルダ名で名前検索(Ctrl + F)をする。svTargetがあり"INCLUDE_SUBDIR"があると、Always、SELFREGがあると、self-registerにYesと設定する。
 
-�ݒ�ŋA��̂́AOverwrite��self-registory�ł���BOverwrite�́A�ǂ̂悤�ɏ㏑�����邩�ݒ肷��v���p�e�B�ł���A��{"Always"�Őݒ肷��BAlways�͓����t�ŋ����I�ɏ㏑������Ӗ������B
-selfregester�͊�{server�t�H���_��program�t�H���_��dll�Aexe�̎��s�t�@�C���Őݒ肷�邱�Ƃ������B���W�X�g���o�^���邩�̐ݒ�B
+設定で帰るのは、Overwriteとself-registoryである。Overwriteは、どのように上書きするか設定するプロパティであり、基本"Always"で設定する。Alwaysは同日付で強制的に上書きする意味を持つ。
+selfregesterは基本serverフォルダやprogramフォルダのdll、exeの実行ファイルで設定することが多い。レジストリ登録するかの設定。
 
-setup.rul��svTarget�̊i�[��ɂ���āADestination���ς�邽�߁A�����͂悭���Đݒ肵�Ȃ��Ƃ����Ȃ��B
-��
+setup.rulのsvTargetの格納先によって、Destinationが変わるため、ここはよく見て設定しないといけない。
+例
 svTarget => C\\OPOS\\
 TargetDisk => C:\\OPOS\\Application\\SS\\
 
 Application Data\\File&Folders\\Application Target Folder\\
-�t�H���_�����ɉ����Ȃ���΂��̃t�H���_�������B��������ꍇ�́ADesination�̐ݒ肪�Ⴄ�\��������B
-�������AApplication Target Folder��C:\\OPOS\\�ł��邽�߁AOPOS�����ɔz�u�ꏊ��ݒ肵�Ă���t�H���_�͍폜���Ȃ��Ă��悢
+フォルダ直下に何もなければそのフォルダを消す。もしある場合は、Desinationの設定が違う可能性がある。
+ただし、Application Target FolderはC:\\OPOS\\であるため、OPOS直下に配置場所を設定しているフォルダは削除しなくてもよい
 
-���̍�Ƃ�Data���̂��ׂẴt�H���_�Őݒ肷��B
+この作業をData内のすべてのフォルダで設定する。
 
-System Configuration��Program menu\\NCR�͍폜���Ă悢�B
+System ConfigurationのProgram menu\\NCRは削除してよい。
 
-ModifysetupINI.bas��package name = Media..\\Disk Images\\Disk1\\setup_out.INI��App name�������Ă��邩�Bsetup_in.txt�Ƃ������Ă��邩�B�Ⴄ�ꍇ�́A���킹��B
-ProductID��InstallShield��GeneralInformation��product code�̐����񂾂��R�s�y����B
+ModifysetupINI.basのpackage name = Media..\\Disk Images\\Disk1\\setup_out.INIのApp nameが合っているか。setup_in.txtともあっているか。違う場合は、合わせる。
+ProductIDはInstallShieldのGeneralInformationのproduct codeの数字列だけコピペする。
 
-ScriptFiles�t�H���_�͑��q�悩��R�s�[����B(Setup.rul�����W�b�N�������ɈႤ����)  
-setup.rul���m�F����B  
-��{�I�ɑO�p�b�P�[�W��setup.rul�𐳂����O��Ƃ��Ă��邽�߁A����Ȃ��L�q�͒ǋL����B�������A�O�̃p�b�P�[�W��InstallShield��Install Shield2015�ƈႤ�o�[�W�����ł��邽�߁A�R�[�h�̋L�q�͈قȂ��Ă���B�ł��邽�߁A�K������ׂ��|�C���g�́A�p�����[�^��`(#define ~)�����ׂĂ�����Ă��邩�A���W�X�g���o�^����R�[�h�̋L�q�ɑ���Ȃ��Ƃ���͂Ȃ����ACreateDir�֐��͍����Ă���̂��m�F����B
+ScriptFilesフォルダは他客先からコピーする。(Setup.rulがロジックが微妙に違うため)  
+setup.rulを確認する。  
+基本的に前パッケージのsetup.rulを正しい前提としているため、足りない記述は追記する。しかし、前のパッケージのInstallShieldはInstall Shield2015と違うバージョンであるため、コードの記述は異なっている。であるため、必ず見るべきポイントは、パラメータ定義(#define ~)がすべてそろっているか、レジストリ登録するコードの記述に足りないところはないか、CreateDir関数は合っているのか確認する。
 
-setup.rul���E�N���b�N���A"compile"��I���B�G���[���o�Ȃ��Ȃ�OK�B
+setup.rulを右クリックし、"compile"を選択。エラーも出ないならOK。
 
-project Assistant��Build Installtion�ŁASingle�`�̂݃`�F�b�N���ABuild Installtion���N���b�N�B
+project AssistantのBuild Installtionで、Single～のみチェックし、Build Installtionをクリック。
 
-Media\\Release\\Release�͍폜����B
-SINGLE\_....IMAGE�����邽�߁A���ꂩ��p�b�P�[�W���r���h�������ꍇ�́ABuild�^�u��SINGLE_IMAGE�Ńr���h����B
+Media\\Release\\Releaseは削除する。
+SINGLE\_....IMAGEがあるため、これからパッケージをビルドしたい場合は、BuildタブのSINGLE_IMAGEでビルドする。
 
-Support Files/Billboards\\Advanced Files\\Disk1\\�ɁANewNCR.bmp�AVERSION.INI��ǉ�����B�ǉ�����t�@�C�����́ASupport files\\Disk1\\����R�s�[����B
+Support Files/Billboards\\Advanced Files\\Disk1\\に、NewNCR.bmp、VERSION.INIを追加する。追加するファイル元は、Support files\\Disk1\\からコピーする。
 
-Media\\Release\\Single_IMAGE�́uevnet�v�^�u�AExecude bat path�ɂ́Aposbuild_option.bat�܂ł̃p�X��ݒ肷��B
+Media\\Release\\Single_IMAGEの「evnet」タブ、Execude bat pathには、posbuild_option.batまでのパスを設定する。
 
-BUILD�^�u��SINGLE_IMGE(F7)��I������ƁA�p�b�P�[�W���쐬�ł���B
+BUILDタブのSINGLE_IMGE(F7)を選択すると、パッケージが作成できる。
 
-Customize pkg�́A�C�����̃p�b�P�[�W�݂̂ō쐬����Ă���B����́ASDM(Software Download Manager�A�Г��p��)�z�M�œX�܂�POS�ɓW�J����邽�߁A�ł��邾���f�[�^�T�C�Y������������ړI������B
+Customize pkgは、修正分のパッケージのみで作成されている。これは、SDM(Software Download Manager、社内用語)配信で店舗のPOSに展開されるため、できるだけデータサイズを小さくする目的がある。
 
-General pkg�́AOPOS�̃x�[�X�ƂȂ�f�[�^�ł���A�쐬�������قǂ̂��Ƃ��Ȃ������{�͕ς��Ȃ��BOPOS�̊�{���W���[���̃p�b�P�[�W�ł���B
+General pkgは、OPOSのベースとなるデータであり、作成したらよほどのことがない限り基本は変えない。OPOSの基本モジュールのパッケージである。
 
-# �N���m�F
+# 起動確認
 
-GeneralPackage�𓖂Ă�B�ċN������BPOS�A�v�����N�������A���W�X�g���o�^���s���B
+GeneralPackageを当てる。再起動する。POSアプリを起動させ、レジストリ登録を行う。
 
-CustmizePackage�𓖂Ă�B�ċN������B�G���[���o�Ȃ����OK�B�ł���Log�����Č�������肷��B
+CustmizePackageを当てる。再起動する。エラーが出なければOK。でたらLogを見て原因を特定する。
